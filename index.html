@@ -1,22 +1,466 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Team Swift (GIKI)</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Swift - Ghulam Ishaq Khan Institute</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #09182F;
+            color: #fff;
+            transition: background-color 0.5s, color 0.5s;
+            font-size: 18px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #BAD7E9;
+            color: #09182F;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        #logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        #menu-icon {
+            display: none;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #09182F;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .slideshow {
+            max-width: 60%;
+            height: 350px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin: 2em auto;
+            position: relative;
+        }
+
+        .mySlides {
+            display: none;
+            position: absolute;
+            width: 100%;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: auto;
+            max-height: 60vh; /* Adjust the percentage as needed */
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .text {
+            color: #fff;
+            font-size: 20px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .numbertext {
+            color: #fff;
+            font-size: 18px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px;
+        }
+
+        section {
+            margin-top: 20px;
+            padding: 20px;
+            transition: background-color 0.5s, color 0.5s;
+            font-size: 20px;
+        }
+
+        #about,
+        #contact-section {
+            text-align: center;
+            background-color: #BAD7E9;
+            color: #09182F;
+            max-width: 800px; /* Set your preferred maximum width */
+            margin: auto; /* Center-align the content */
+            padding: 20px; /* Add padding for better visual appearance */
+            border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+        }
+
+        #projects,
+        #auvsi-section {
+            text-align: center;
+            background-color: #09182F;
+            color: #fff;
+        }
+
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .project {
+            width: 48%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .project p {
+            position: absolute;
+            bottom: 0;
+            background: rgba(9, 24, 47, 0.7);
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 0;
+            display: none;
+            font-size: 16px;
+        }
+
+        .project:hover p {
+            display: block;
+        }
+
+        #last-project {
+            text-align: center;
+            position: relative;
+        }
+
+        #last-project img {
+            width: 60%;
+            display: block;
+            margin: auto;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #last-project p {
+            position: absolute;
+            bottom: 0;
+            background: rgba(9, 24, 47, 0.7);
+            width: 60%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 0;
+            font-size: 16px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0.5s;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: normal;
+            pointer-events: none; /* Add this line to prevent the description from blocking cursor events */
+        }
+
+        #last-project:hover p {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto; /* Allow cursor events when hovering over the description */
+        }
+
+        #auvsi-video {
+            width: 80%;
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        #contact-section {
+            text-align: center;
+            background-color: #BAD7E9;
+            color: #09182F;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #email-link {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #09182F;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        #email-link:hover {
+            color: #fff;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-logo {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .social-logo:hover {
+            filter: brightness(1.2);
+        }
+
+        #scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: #BAD7E9;
+            color: #09182F;
+            padding: 10px;
+            border-radius: 50%;
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <h1>Team Swift</h1>
-        <p> Pakistan's representative in SUAS AUVSI.</p>
+        <img src="images/Original.PNG" alt="Team Logo" id="logo">
+        <div id="menu-icon">&#9776;</div>
+        <nav>
+            <a href="#about">About Us</a>
+            <a href="#projects">Projects</a>
+            <a href="#auvsi-section">AUVSI SUAS 2023</a>
+            <a href="#contact-section">Contact Us</a>
+        </nav>
     </header>
 
-    <div>
-        <h2>Content</h2>
+    <h1>TEAM SWIFT<br>Ghulam Ishaq Khan Institute<br>Pakistan's representative in SUAS AUVSI</h1>
+
+    <div class="slideshow">
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 4</div>
+            <img src="images/team.jpg" alt="Team">
+            <div class="text">Team Swift</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 4</div>
+            <img src="images/firstfly.jpg" alt="First Fly">
+            <div class="text">Team Swift First Flight</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 4</div>
+            <img src="images/flyingshaheen.jpg" alt="Flying Shaheen">
+            <div class="text">Team Swift Flying Shaheen</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">4 / 4</div>
+            <img src="images/withbabyshark.jpg" alt="Baby Shark">
+            <div class="text">Addition of Baby-shark to Team</div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
-    <footer>
-        <p>&copy; &reg; 2024 Team Swift.</p>
-    </footer>
-</body></html>
+    <section id="about">
+        <h2>About Us</h2>
+        <p>
+            Team Swift, a student-led team from the Ghulam Ishaq Khan Institute, specializes in the design and production
+            of cutting-edge Unmanned Aerial Systems. This year, the team is set to make history as one of the first-ever
+            Pakistani representatives at the prestigious AUVSI SUAS Competition in the United States, organized by the
+            world's largest non-profit organization devoted to advancing unmanned systems and robotics.
+        </p>
+        <p>
+            This exciting opportunity not only puts Pakistan on the map for technological innovation, but it also provides
+            our students with a unique chance to expand their knowledge and skills in the rapidly growing field of UAVs.
+        </p>
+        <p>
+            Moreover, we are delighted to offer our services to partner with any organization interested in developing
+            delivery drones, as our team is fully equipped and proficient in UAV design and development.
+        </p>
+    </section>
+
+    <section id="projects">
+        <h2>Our Projects</h2>
+        <div class="project-container">
+            <div class="project">
+                <img src="images/bumblebee.jpg" alt="Bumblebee">
+                <p>Bumblebee - Team's first quadcopter, capable of carrying up to 500 grams payload and also flying banners
+                    for marketing campaigns. It can be seen pictured after completing 8 successful flights.</p>
+            </div>
+            <div class="project">
+                <img src="images/shaheen.jpg" alt="Shaheen">
+                <p>Shaheen - A radio-controlled cargo aircraft capable of aerial deployment.</p>
+            </div>
+            <div class="project">
+                <img src="images/baby.jpg" alt="Baby Shark">
+                <p>Baby Shark - This little trainer made out of depron sheets was the first aircraft fabricated by Team
+                    Swift.</p>
+            </div>
+            <div class="project">
+                <img src="images/snapper.jpg" alt="Snapper">
+                <p>Snapper - Built for a gentler introduction to radio control flying to new team members. RC-powered
+                    gliders are a great option for learning to fly.</p>
+            </div>
+            <div class="project">
+                <img src="images/flamingo.jpg" alt="Flamingo">
+                <p>Flamingo - Designed and fabricated from scratch, entirely by the women engineers at Team Swift. With
+                    its semi-symmetric airfoil, flamingo is ideal for aerobatics.</p>
+            </div>
+            <div class="project">
+                <img src="images/hydra.jpg" alt="Hydra">
+                <p>Hydra - Capable of fully autonomous aerial drops. With its 17-inch carbon fiber propellers, Hydra can
+                    carry up to 1kg payload for over 15km.</p>
+            </div>
+        </div>
+
+        <div id="last-project">
+            <img src="images/recluse .jpg" alt="Recluse">
+            <p>Recluse - Our trusty UAV named for its extremely stable flying and unmatched payload 
+                delivering capacity.</p>
+        </div>
+    
+    </section>
+
+    <section id="auvsi-section">
+        <h2>AUVSI SUAS 2023</h2>
+        <p>Check out our participation in AUVSI SUAS 2023:</p>
+        <iframe id="auvsi-video" width="800" height="450" src="https://www.youtube.com/embed/87Ahqt7JyFI" frameborder="0" allowfullscreen></iframe>
+
+    </section>
+
+    <section id="contact-section">
+        <h2>Contact Us</h2>
+        <div id="contact-links">
+            <a href="mailto:teamswiftgik@gmail.com" id="email-link">teamswiftgik@gmail.com</a>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/swiftgik/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/facebook.png" alt="Facebook Logo" class="social-logo">
+                </a>
+                <a href="https://www.instagram.com/swift_gik/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/instagram.png" alt="Instagram Logo" class="social-logo">
+                </a>
+                <a href="https://www.linkedin.com/company/swiftgik/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/linkedin.png" alt="LinkedIn Logo" class="social-logo">
+                </a>
+            </div>
+        </div>
+    </section>
+    
+
+    <div id="scroll-to-top" onclick="scrollToTop()">^</div>
+
+    <script>
+        var slideIndex = 0;
+        
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change slide every 2 seconds
+        }
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Initial call to start the slideshow
+        showSlides();
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            var scrollToTopBtn = document.getElementById("scroll-to-top");
+    
+            if (
+                document.body.scrollTop > 20 ||
+                document.documentElement.scrollTop > 20
+            ) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+    </script>
+    
+</body>
+
+</html>
